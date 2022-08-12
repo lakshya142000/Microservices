@@ -28,6 +28,9 @@ select ename, job ,sal from emp where job in ('MANAGER','ANALYST') and Sal not i
 Select e.ename,m.sal,e.comm from EMP e,emp m where e.comm>m.sal+m.sal*.10 and e.empno=m.empno
 --15 Query
 Select ename from emp where ename like'%LL%' and deptno in (30) or mgr_id=7782
+--16 Query
+Select ename, count(ename)as empCount from emp 
+where DATEDIFF(year,hiredate,(Select convert (varchar,GetDATE (),1))) between 10 and 20 Group by ename
 --17 Query
 select d.dname,e.ename from EMP e full outer join DEPT d on e.deptno=d.deptno  order by d.dname, e.ename desc
 --18 Query
