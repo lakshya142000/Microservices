@@ -30,3 +30,5 @@ Select e.ename,m.sal,e.comm from EMP e,emp m where e.comm>m.sal+m.sal*.10 and e.
 Select ename from emp where ename like'%LL%' and deptno in (30) or mgr_id=7782
 --17 Query
 select d.dname,e.ename from EMP e full outer join DEPT d on e.deptno=d.deptno  order by d.dname, e.ename desc
+--18 Query
+Select DATEDIFF(year,(Select hiredate from emp where ename= 'MILLER'),(Select convert (varchar,GetDATE (),1))) As 'Miller Exp'
