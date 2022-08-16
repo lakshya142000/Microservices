@@ -72,11 +72,50 @@ insert into Employee(id,name,age,address)  values(7,'Muffy',24,'Indore')
 Select Lower(name) from Employee where salary is null
 
 --7
---Query 
+create table tblStudentDetails(
+       registerNo int primary key,
+	   studName varchar(30),
+	   age int,
+	   qualification varchar(30),
+	   mobileNo bigint,
+	   mail_id varchar(30),
+	   loc varchar(30),
+	   gender varchar(6)
+)
+
+insert into tblStudentDetails values(2,'Sai',22,'B.E',9952836777,'Sai@gmail.com','Chennai','M'),
+(3,'Kumar',20,'BSC',7890125648,'Kumar@gmail.com','Madurai','M'),
+(4,'Selvi',22,'B.Tech',8904567342,'selvi@gmail.com','Selam','F'),
+(5,'Nisha',25,'M.E',7834672310,'Nisha@gmail.com','Theni','F'),
+(6,'SaiSaran',21,'B.A',7890345678,'saran@gmail.com','Madurai','F'),
+(7,'Tom',23,'BCA',8901234675,'Tom@gmail.com','Pune','M')
+
 Select Distinct(Gender),count(Gender) from Studentdetails group by Gender
 
 --8
---Query
+create table tblCourseDetails(
+       cId varchar(30) primary key,
+	   cName varchar(30),
+	   startDate date,
+	   endDate date,
+	   fee float
+)
+
+insert into tblCourseDetails values('DN003','DotNet','2018-02-01','2018-02-28',15000),
+('DV004','DataVisualization','2018-03-01','2018-04-15',15000),
+('JA002','AdvancedJava','2018-01-02','2018-01-20',10000),
+('JC001','CoreJava','2018-01-02','2018-01-12',3000)
+
+create table tblCourseRegistration(
+	registerNo int references tblStudentDetails(registerNo),
+	cId varchar(300) references tblCourseDetails(cId),
+	batch varchar(30)
+	primary key(registerNo,cId)
+)
+
+insert into tblCourseRegistration values(2,'DN003','FN'),
+(3,'DV004','AN'),(4,'JA002','FN'),(2,'JA002','AN'),(5,'JC001','FN')
+
 Select cd.c_name, count(cr.RegisterNo) from Coursedetails cd, CourseRegistration cr where cd.cid=cr.cid group By c_name Order By c_name desc
 
 --9 
