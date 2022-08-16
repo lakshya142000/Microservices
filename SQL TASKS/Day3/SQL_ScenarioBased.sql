@@ -146,5 +146,5 @@ Select ProductName,Quantity,OrderNumber From Product p join orderitem oi on p.id
 join order o on o.id=oi.orderid
 
 --12 Query
-Select C_name from coursedetails cd join courseregistration cr on cd.c_id=cr.c_id join
-studetdetails sd on sd.registerno=cr.registerno where name='Nisha'
+Select Cname from coursedetails cd join courseregistration cr on cd.cid=cr.cid join
+StudentDetails sd on sd.registerNo=cr.registerno where studname='Nisha'
