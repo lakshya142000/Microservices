@@ -72,7 +72,7 @@ insert into Employee(id,name,age,address)  values(7,'Muffy',24,'Indore')
 Select Lower(name) from Employee where salary is null
 
 --7
-create table tblStudentDetails(
+create table StudentDetails(
        registerNo int primary key,
 	   studName varchar(30),
 	   age int,
@@ -83,7 +83,7 @@ create table tblStudentDetails(
 	   gender varchar(6)
 )
 
-insert into tblStudentDetails values(2,'Sai',22,'B.E',9952836777,'Sai@gmail.com','Chennai','M'),
+insert into StudentDetails values(2,'Sai',22,'B.E',9952836777,'Sai@gmail.com','Chennai','M'),
 (3,'Kumar',20,'BSC',7890125648,'Kumar@gmail.com','Madurai','M'),
 (4,'Selvi',22,'B.Tech',8904567342,'selvi@gmail.com','Selam','F'),
 (5,'Nisha',25,'M.E',7834672310,'Nisha@gmail.com','Theni','F'),
@@ -93,7 +93,7 @@ insert into tblStudentDetails values(2,'Sai',22,'B.E',9952836777,'Sai@gmail.com'
 Select Distinct(Gender),count(Gender) from Studentdetails group by Gender
 
 --8
-create table tblCourseDetails(
+create table CourseDetails(
        cId varchar(30) primary key,
 	   cName varchar(30),
 	   startDate date,
@@ -101,22 +101,22 @@ create table tblCourseDetails(
 	   fee float
 )
 
-insert into tblCourseDetails values('DN003','DotNet','2018-02-01','2018-02-28',15000),
+insert into CourseDetails values('DN003','DotNet','2018-02-01','2018-02-28',15000),
 ('DV004','DataVisualization','2018-03-01','2018-04-15',15000),
 ('JA002','AdvancedJava','2018-01-02','2018-01-20',10000),
 ('JC001','CoreJava','2018-01-02','2018-01-12',3000)
 
-create table tblCourseRegistration(
-	registerNo int references tblStudentDetails(registerNo),
-	cId varchar(300) references tblCourseDetails(cId),
+create table CourseRegistration(
+	registerNo int references StudentDetails(registerNo),
+	cId varchar(30) references CourseDetails(cId),
 	batch varchar(30)
 	primary key(registerNo,cId)
 )
 
-insert into tblCourseRegistration values(2,'DN003','FN'),
+insert into CourseRegistration values(2,'DN003','FN'),
 (3,'DV004','AN'),(4,'JA002','FN'),(2,'JA002','AN'),(5,'JC001','FN')
 
-Select cd.c_name, count(cr.RegisterNo) from Coursedetails cd, CourseRegistration cr where cd.cid=cr.cid group By c_name Order By c_name desc
+Select cd.cname, count(cr.RegisterNo) as studentCount from Coursedetails cd, CourseRegistration cr where cd.cid=cr.cid group By cname Order By cname desc
 
 --9 
 Create Table Customer2 (Cutomer_id int, First_name varchar(30),Last_name Varchar(30))
@@ -138,7 +138,7 @@ Select c.First_name,c.Last_name,count(o.customer_id) from customer2 c ,order1 o 
 having count(o.customer_id)=2
 
 --10 Query
-Select REVERSE(name),UPPER(location) from studentdetails
+Select REVERSE(studName),UPPER(loc) from studentdetails
 
 --11 Query
 Create view [Details] as
